@@ -1,0 +1,416 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+
+<link rel="Stylesheet" href="{% static 'Styles.css' %}">
+<link rel="stylesheet" href="{% static 'all.min.css' %}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />  
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital@1&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@1,500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<title>PENSION - YourRight</title>
+<link rel="icon" href="{% static 'Penman3.png' %}">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+          google.charts.load("current", {packages:["corechart"]});
+          google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['NSAP', 'CENSUS'],
+              ['Getting Pension Under NSAP',    {{getting}} ],
+              ['Eligible for Pension',      {{eligible}}],
+              ['Miscount(Not getting Pension)',      {{miscount}}]
+            ]);
+    
+            var options = {
+              backgroundColor: 'transparent',
+              title: 'NSAP VS CENSUS Graph visualization',
+              is3D: true,
+            };
+    
+            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+            chart.draw(data, options);
+          }
+        </script>
+</head>
+<body>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<section id="title">
+
+<div class="barnav">
+
+<!-- Navigation bar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #dcfcff;">
+  <a class="navbar-brand" href="">
+    <img src="{% static 'man2 pen.png' %}" alt="old man" width="40" height="40">
+    PENSION <h6> Your Right</h6>
+    </a>
+   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse div1" id="navbarSupportedContent">
+  <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+          <a class="nav-link" href="#home-title"><b>HOME</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#Report-section"><b>REPORT</b></a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="#About-us"><b>ABOUT US</b></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#FAQ"><b>FAQ's</b></a>
+      </li>
+      
+  </ul>
+
+</div>
+</nav>
+</div>
+</section>
+<section id="home-title" >
+<!-- HOME Title -->
+
+<div class="row">
+  <div class="col-lg-6 ">
+   <h3 class="first-text"> Old Age Pensioners Portal <nav></nav><br>
+    One Stop distination for IGNOAPS Scheme under NSAP. Webapp generating the total no of people eligible for receiving pensions under NSAP (Indira GandhiNational Old AgePension Scheme) but are not included(area wise).</h3>
+   <button type="button" class="btn btn-dark btn-lg " onclick="window.location.href='search'"><i class='fa-solid fa-magnifying-glass'></i> &nbsp;Search Your Name</button>
+  </div>
+  
+  <div class="col-lg-6">
+    <img class = "img1" src="{% static 'Oldman1.png' %}"  alt="Old-man-image">
+  </div>
+   
+  </div>
+  
+
+</section>
+
+<section id = "Report-section">
+  <br>
+  <!-- <h1 class="report-h1">REPORTS</h1> -->
+  <br> <br> <br>
+  <h1>REPORT</h1>
+  <br>
+  <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-interval="10" >
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <h3>Total number of old Age men And women Availing the benefit Under NSAP IGNOAPS Scheme</h3>
+        <h2><b>{{getting}}</b></h2>
+      </div>
+      <div class="carousel-item">
+        <h3>Total number of old Age men and women eligible</h3>
+        <h2><b>{{eligible}}</b></h2>
+      </div>
+      <div class="carousel-item">
+        <h2>Not receiving pension</h2>
+        <h2 style="display: inline-block; color : Red;"><b>   {{miscount}}</b>&nbsp;<h5 style="display: inline-block;">&nbsp;are&nbsp;less&nbsp;</h5></h2>
+      </div>
+    </div>
+    <div id="piechart_3d" style="width: 850px; height: 400px; margin-left:250px"></div>
+  </div>
+  <br>
+  <hr class="First-hr">
+  
+<h4>State-Wise</h4>
+<br>
+<div class="row">
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-success">Andaman and Nicobar <nav>{{district.Andaman_and_Nicobar}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-warning">&nbsp;&nbsp;&nbsp;&nbsp;Andhra Pradesh &nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Andhra_Pradesh}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-danger">&nbsp;&nbsp;&nbsp;Arunachal Pradesh&nbsp;&nbsp;&nbsp;<nav>{{district.Arunachal_Pradesh}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-dark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Assam&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Assam}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bihar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Bihar}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-warning">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chandigarh&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Chandigarh}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-danger">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chhattisgarh&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Chhattisgarh}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-dark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Delhi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <nav>{{district.Delhi}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <nav>{{district.Goa}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-warning">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gujarat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Gujrat}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-danger">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Haryana&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <nav>{{district.Haryana}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-dark">&nbsp;Himachal Pradesh<nav>{{district.Himachal_Pradesh}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-success">&nbsp;&nbsp;Jammu and Kashmir&nbsp;&nbsp;<nav>{{district.Jammu_and_Kashmir}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-warning">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jharkhand&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Jharkhand}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-danger">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Karnataka&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Karnataka}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-dark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kerela&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Kerala}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ladakh&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Ladakh}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-warning">&nbsp;&nbsp;&nbsp;&nbsp;Lakshadweep&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Lakshwadeep}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-danger">&nbsp;&nbsp;&nbsp;&nbsp;Madhya Pradesh&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Madhya_Pradesh}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-dark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Maharashtra&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Maharashtra}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Manipur&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Manipur}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-warning">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Meghalaya&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Meghalaya}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-danger">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mizoram&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <nav>{{district.Mizoram}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nagaland&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <nav>{{district.Nagaland}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-warning">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Odisha&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Odisha}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-danger">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Puducherry&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <nav>{{district.Puducherry}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-dark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Punjab&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Punjab}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rajasthan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Rajashthan}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-warning">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sikkim&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <nav>{{district.Sikkim}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-danger">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tamil Nadu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Tamil_Nadu}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-dark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Telangana&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Telangana}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-success">The Dadar and Nagar Haveli and Daman and Diu<nav>{{district.Dadar_and_Nagar}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-warning">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tripura&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Tripura}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-danger">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Uttarakhand&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Uttarakhand}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-dark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Uttar Pradesh&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.Uttar_Pradesh}}</nav></button>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-outline-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;West Bengal&nbsp;&nbsp;&nbsp;&nbsp;<nav>{{district.West_Bengal}}</nav></button>
+  </div>
+</div>
+<br>
+  <hr class="First-hr">
+  
+  
+
+
+
+  
+
+      
+
+   
+
+
+
+
+
+  
+
+
+
+
+</section>
+
+
+<!-- About us Section -->
+
+<section id="About-us">
+  <h1>ABOUT US</h1>
+  <!-- -------------------------------------------------------------------------------------------------------------------------------------------- -->
+  <div class="row about-us-row">
+    <div class="col-lg-4 first-card1">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <H3 class="what">WHAT WE DO?</H3>
+          </div>
+          <div class="flip-card-back">
+             
+            <p>We are here to assist India's elderly people so that they may live their lives quietly even after retirement, knowing that they have the right to a pension if they are qualified.</p> 
+            
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- ----------------------------------------------------------------------------------------------------------- -->
+
+    
+    <div class="col-lg-4 second-card2">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <h3 class="why">WHY WE DO?</h3>
+          </div>
+          <div class="flip-card-back">
+            
+            <p>We do this to guarantee that every family in India that is qualified for a pension but is not receiving one understands their rights and requests the pension they are entitled to.</p> 
+            
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- ------------------------------------------------------------------------------------------------------------ -->
+    <div class="col-lg-4 third-card3">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <H3 class="how">HOW WE DO?</H3>
+          </div>
+          <div class="flip-card-back">
+            
+            <p>We get your information from the official government website, nsap.in, compare it to the data on the SECC website, and publish the findings clearly so you don't have to go anywhere else to get your name for pension.</p> 
+            
+          </div>
+        </div>
+      </div>
+
+    </div>
+</div>
+
+
+
+</section>
+
+<!-- =============================================================================+++++++++++++++++++++++++++++++++++++++++++++++++++++++++=============== -->
+<section id="FAQ">
+  <h2 class="FAQ-tab">FAQ - Frequently Asked Questions</h2>
+  <br><br>
+
+  <!-- ------------------------------------------------------------------------------------------------------------------------------- -->
+  <div class="row">
+   <div class="col-lg-6 faq-questions">
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Who is eligible for pension?
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              A Government servant appointed in a pensionable establishment on or before 31.12.2003 and retires from Government service with a qualifying service of 10 years or more is eligible for pension (Rule 2, 49).
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Why am I not recieving pension?
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              You might be eligible for pension, but you have not registered on the pension's official website.
+          </div>
+        </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Can a pension be withheld/withdrawn on grounds of misconduct after retirement?
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              Future good conduct is the implied condition for grant/continuance of pension. The appointing authority may, by order in writing, withhold or withdraw a pension or a part thereof, whether permanently or for a specified period, if the pensioner is convicted of a serious crime or is found guilty of grave misconduct.
+            </div>
+            </div>
+            </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    From where can we download the pension /nomination forms ?
+                  </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    All forms are available at the website of Department of Pension & Pensioners Welfare.<br><a href="https://doppw.gov.in/en">https://doppw.gov.in/en</a>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFive">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    Can a pension account be opened in any branch of any bank?
+                  </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    No, a pension account cannot be opened in any branch of any bank. There is a list of public sector and private sector banks in each State in which a pension account may be opened. For latest information about the list please visit the website of Central Pension Accounting Office <br><a href="https://cpao.nic.in/">https://cpao.nic.in/</a> 
+              </div>
+             </div>
+              
+          </div>
+       
+
+
+    </div>
+  </div>
+  </section>
+  
+
+
+
+
+
+  </section>
+  
+</body>
+</html>
+
