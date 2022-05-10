@@ -10,7 +10,7 @@ A web Portal for Old Age Pension Scheme under NSAP for both individuals and Gove
 3. Those who are not getting the pension (miscount).
 ![Portal2](https://user-images.githubusercontent.com/92742868/164150273-acb455c9-70d8-4fb6-abda-a90e856aa177.png)
 
-# Fteching Statewise data.
+# Fetching Statewise data.
 ![Portal3](https://user-images.githubusercontent.com/92742868/164150301-1a78bbf0-a759-4867-a666-aa838c2df271.png)
 
 ![Portal4](https://user-images.githubusercontent.com/92742868/164150336-f3b97a14-2150-4e04-a6aa-83a9bf724ae2.png)
